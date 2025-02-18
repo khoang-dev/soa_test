@@ -1,0 +1,251 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import MountainsIcon from '@/assets/icons/Mountains.svg'
+import FishingIcon from '@/assets/icons/Fishing.svg'
+import CrosshairIcon from '@/assets/icons/Crosshair.svg'
+
+interface Activity {
+  id: number
+  name: string
+  icon: string
+  position: {
+    top: string
+    left: string
+  }
+  activities: string[]
+}
+
+const selectedMarker = ref<Activity | null>(null)
+const isZoomed = ref(false)
+
+const activities: Activity[] = [
+  {
+    id: 1,
+    name: 'Pourvoirie 1',
+    icon: MountainsIcon,
+    position: { top: '30%', left: '40%' },
+    activities: ['Randonnée', 'Camping', 'Observation'],
+  },
+  {
+    id: 2,
+    name: 'Pourvoirie 2',
+    icon: FishingIcon,
+    position: { top: '45%', left: '55%' },
+    activities: ['Pêche', 'Kayak', 'Natation'],
+  },
+  {
+    id: 3,
+    name: 'Pourvoirie 3',
+    icon: CrosshairIcon,
+    position: { top: '35%', left: '48%' },
+    activities: ['Chasse', "Tir à l'arc", 'Safari'],
+  },
+]
+
+const handleMarkerClick = (activity: Activity) => {
+  selectedMarker.value = activity
+  isZoomed.value = true
+}
+
+const resetInteraction = () => {
+  selectedMarker.value = null
+  isZoomed.value = false
+}
+
+const handleActivityClick = (activity: Activity) => {
+  selectedMarker.value = activity
+  isZoomed.value = true
+}
+</script>
+
+<template>
+  <div class="map-section">
+    <h2 class="title">TITRE BLOC 2</h2>
+
+    <div class="activities-nav">
+      <button
+        v-for="activity in activities"
+        :key="activity.id"
+        class="activity-btn"
+        :class="{ active: selectedMarker?.id === activity.id }"
+        @click="handleActivityClick(activity)"
+      >
+        <img :src="activity.icon" :alt="activity.name" class="activity-icon" />
+        {{ activity.name }}
+      </button>
+    </div>
+
+    <div class="map-container">
+      <div class="map-label">
+        <!-- <img src="@/assets/icons/Location.svg" alt="Location" class="location-icon" /> -->
+        <span>Emplacement</span>
+      </div>
+
+      <div class="map-wrapper" :class="{ 'is-zoomed': isZoomed }">
+        <img src="@/assets/map.png" alt="Map" class="map-image" />
+        <div
+          v-for="activity in activities"
+          :key="activity.id"
+          class="map-marker"
+          :class="{ active: selectedMarker?.id === activity.id }"
+          :style="{ top: activity.position.top, left: activity.position.left }"
+          @click="handleMarkerClick(activity)"
+        >
+          <img :src="activity.icon" :alt="activity.name" />
+        </div>
+
+        <div v-if="selectedMarker" class="marker-details">
+          <h3>{{ selectedMarker.name }}</h3>
+          <ul>
+            <li v-for="(act, index) in selectedMarker.activities" :key="index">
+              {{ act }}
+            </li>
+          </ul>
+          <button class="reset-btn" @click="resetInteraction">Retour</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.map-section {
+  padding: 2rem;
+  background-color: #fff5f5;
+}
+
+.title {
+  text-align: center;
+  color: #ff5722;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.activities-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.activity-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 2rem;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.activity-btn.active,
+.activity-btn:hover {
+  background-color: #ff5722;
+  color: white;
+}
+
+.activity-icon {
+  width: 24px;
+  height: 24px;
+  color: black;
+}
+
+.map-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.map-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background-color: #e8f5e9;
+  border-radius: 0.5rem;
+  width: fit-content;
+}
+
+.location-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.map-wrapper {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: transform 0.5s ease;
+}
+
+.map-wrapper.is-zoomed {
+  transform: scale(1.2);
+}
+
+.map-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.map-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50%;
+  padding: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.map-marker.active {
+  background-color: #ff5722;
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.map-marker img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.marker-details {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.marker-details h3 {
+  color: #ff5722;
+  margin-bottom: 0.5rem;
+}
+
+.marker-details ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.marker-details li {
+  margin-bottom: 0.25rem;
+}
+
+.reset-btn {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+</style>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ActivitiesMap from '@/components/ActivitiesMap.vue'
 import CalendarCustom from '@/components/CalendarCustom.vue'
 </script>
 
@@ -88,6 +89,9 @@ import CalendarCustom from '@/components/CalendarCustom.vue'
         </div>
       </form>
     </div>
+    <div class="map-container">
+      <ActivitiesMap />
+    </div>
   </main>
 </template>
 
@@ -115,10 +119,10 @@ import CalendarCustom from '@/components/CalendarCustom.vue'
 }
 
 .activity-container {
-  position: absolute;
-  top: 1000px; /* Điều chỉnh vị trí của hoạt động */
+  /* position: absolute;
+  top: 1000px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%); */
   background: white;
   padding: 20px;
   border-radius: 8px;
