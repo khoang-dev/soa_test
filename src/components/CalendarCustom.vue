@@ -36,6 +36,8 @@
 import { ref, computed } from 'vue'
 import dayjs from 'dayjs'
 
+const MOCKED_OCCUPIED_DATES = ['28/01/2025', '29/01/2025', '04/02/2025']
+
 const currentDate = ref(dayjs())
 // const selectedDate = ref(dayjs())
 
@@ -79,8 +81,8 @@ const isSameMonth = (date: dayjs.Dayjs) => {
 }
 
 const isOccupied = (date: dayjs.Dayjs) => {
-  const occupiedDates = [1, 4, 11, 15, 20]
-  return occupiedDates.includes(date.date()) && isSameMonth(date)
+  const formattedDate = date.format('DD/MM/YYYY')
+  return MOCKED_OCCUPIED_DATES.includes(formattedDate)
 }
 
 const prevMonth = () => {
@@ -99,6 +101,10 @@ const nextMonth = () => {
   margin: 0 auto;
   padding: 20px;
   font-family: Arial, sans-serif;
+  border-radius: 24px;
+  border: 1px solid rgba(86, 44, 44, 0.3);
+  background: #fff;
+  box-shadow: 0px 0px 30px 0px rgba(242, 84, 45, 0.1);
 }
 
 .calendar-header {
@@ -142,13 +148,14 @@ const nextMonth = () => {
 }
 
 .date-cell {
-  border-radius: 8px;
-  padding: 15px;
-  text-align: center;
   display: flex;
+  height: 72px;
+  padding: 8px 16px;
   flex-direction: column;
-  gap: 5px;
-  min-height: 80px;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 0;
+  border-radius: 8px;
 }
 
 .date-number {
@@ -161,16 +168,17 @@ const nextMonth = () => {
 }
 
 .occupied {
-  background-color: #fff1f1;
-  color: #ff0000;
+  border: 1px solid #d7d7d7;
+  background: #fff;
 }
 
 .free {
-  background-color: #f1fff1;
-  color: #008000;
+  border: 1px solid #f2542d;
+  background: #fff4f1;
 }
 
 .other-month {
-  opacity: 0.5;
+  border: 1px solid #dfdfdf;
+  background: #f5f5f5;
 }
 </style>

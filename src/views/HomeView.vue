@@ -32,7 +32,11 @@ import CalendarCustom from '@/components/CalendarCustom.vue'
     <ActivitiesMap />
   </div>
   <div class="activity-container">
-    <h2 class="activity-title">NOS ACTIVITÉS</h2>
+    <div class="flex items-center justify-center gap-4 mb-4">
+      <hr class="line w-1/4 text-[#BBBBBB]" />
+      <h2 class="activity-title">NOS ACTIVITÉS</h2>
+      <hr class="line w-1/4 text-[#BBBBBB]" />
+    </div>
     <CalendarCustom />
 
     <form class="activity-form">
@@ -262,7 +266,6 @@ import CalendarCustom from '@/components/CalendarCustom.vue'
   background: white;
   padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
@@ -272,7 +275,6 @@ import CalendarCustom from '@/components/CalendarCustom.vue'
   font-size: 32px;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 40px;
   color: #ff5722;
 }
 
