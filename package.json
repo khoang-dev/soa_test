@@ -14,9 +14,14 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@commitlint/config-conventional": "^19.7.1",
+    "commitlint": "^19.7.1",
+    "devmoji": "^2.3.0",
+    "lint-staged": "^15.4.3",
     "pinia": "^2.3.1",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.0",
+    "yorkie": "^2.0.0"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",
@@ -39,5 +44,38 @@
     "vite-plugin-vue-devtools": "^7.7.1",
     "vitest": "^3.0.5",
     "vue-tsc": "^2.2.0"
+  },
+  "gitHooks": {
+    "prepare-commit-msg": "devmoji -e",
+    "pre-commit": "lint-staged",
+    "commit-msg": "commitlint -e $GIT_PARAMS",
+    "pre-push": "yarn build"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,vue}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{css,scss,less,styl,html}": [
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "devmoji": {
+    "types": {
+      "feat": "✨",
+      "fix": "🐛",
+      "docs": "📝",
+      "style": "💄",
+      "refactor": "♻️",
+      "perf": "⚡️",
+      "test": "✅",
+      "chore": "🔧",
+      "build": "📦",
+      "ci": "👷",
+      "revert": "⏪"
+    }
   }
 }
