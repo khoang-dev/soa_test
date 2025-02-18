@@ -276,15 +276,16 @@ const handleActivityClick = (activity: Activity) => {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   z-index: 3;
   transform-origin: bottom left;
-}
-
-.map-wrapper.is-zoomed .marker-details {
-  transform: scale(1.2);
+  max-width: 300px;
+  width: auto;
 }
 
 .marker-details h3 {
   color: #ff5722;
   margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  word-wrap: break-word;
+  z-index: 9999;
 }
 
 .marker-details ul {
@@ -295,6 +296,8 @@ const handleActivityClick = (activity: Activity) => {
 
 .marker-details li {
   margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+  word-wrap: break-word;
 }
 
 .reset-btn {
@@ -304,5 +307,105 @@ const handleActivityClick = (activity: Activity) => {
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .map-section {
+    padding: 1rem;
+  }
+
+  .activities-nav {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .activity-btn {
+    font-size: 12px;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .map-label {
+    font-size: 14px;
+    padding: 0.25rem;
+  }
+
+  .marker-details {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 1rem 1rem 0 0;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .marker-details h3 {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  .marker-details ul {
+    margin: 1rem 0;
+  }
+
+  .marker-details li {
+    text-align: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .marker-details li:last-child {
+    border-bottom: none;
+  }
+
+  .reset-btn {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .marker-details {
+    animation: slideUp 0.3s ease-out;
+    z-index: 9999;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .map-section {
+    padding: 2rem;
+  }
+
+  .activities-nav {
+    gap: 0.75rem;
+  }
+
+  .marker-details {
+    max-width: 400px;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 40px;
+  }
+
+  .marker-details h3 {
+    font-size: 1.15rem;
+  }
 }
 </style>

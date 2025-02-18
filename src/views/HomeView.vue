@@ -430,4 +430,86 @@ import CalendarCustom from '@/components/CalendarCustom.vue'
 .submit-button:hover {
   background-color: #f4511e;
 }
+
+/* Tablet Landscape (>=1024px và <1920px) */
+@media (min-width: 1024px) and (max-width: 1919px) {
+  .activity-container {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .icons-wrapper {
+    gap: 100px;
+  }
+}
+
+/* Tablet Portrait (>=768px và <1024px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .activity-container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .icons-wrapper {
+    gap: 60px;
+  }
+
+  .activity-title {
+    font-size: 24px;
+  }
+}
+
+/* Mobile (iPhone 14/16 Pro Max) (<768px) */
+@media (max-width: 767px) {
+  .hero-section {
+    height: 70vh;
+  }
+
+  .activity-container {
+    width: 100%;
+    padding: 15px;
+    border-radius: 0;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .icons-wrapper {
+    gap: 30px;
+  }
+
+  .icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .activity-title {
+    font-size: 20px;
+  }
+
+  .chat-button {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .editor-toolbar {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .toolbar-left,
+  .toolbar-right {
+    width: 100%;
+    justify-content: center;
+  }
+}
 </style>

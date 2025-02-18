@@ -181,4 +181,39 @@ const nextMonth = () => {
   border: 1px solid #dfdfdf;
   background: #f5f5f5;
 }
+
+@media (max-width: 767px) {
+  .calendar-container {
+    padding: 10px;
+  }
+
+  .date-status {
+    display: none;
+  }
+
+  .date-cell {
+    height: 40px;
+    padding: 4px;
+  }
+
+  .month-title {
+    font-size: 18px;
+  }
+
+  .day-header {
+    font-size: 12px;
+    padding: 5px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .calendar-container {
+    padding: 15px;
+  }
+
+  .date-cell {
+    height: 60px;
+    padding: 6px 12px;
+  }
+}
 </style>
