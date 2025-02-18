@@ -28,6 +28,7 @@
     "yorkie": "^2.0.0"
   },
   "devDependencies": {
+    "dotenv": "^16.4.7",
     "@tsconfig/node22": "^22.0.0",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^22.13.1",
