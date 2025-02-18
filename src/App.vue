@@ -1,5 +1,12 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+
+const { t, locale } = useI18n()
+
+const switchLanguage = (lang: string) => {
+  locale.value = lang
+}
 </script>
 
 <template>
@@ -9,13 +16,29 @@ import { RouterLink, RouterView } from 'vue-router'
     </div>
 
     <div class="flex items-center space-x-8">
-      <RouterLink to="/" class="hover:text-gray-300">Titre 1</RouterLink>
-      <RouterLink to="/about" class="hover:text-gray-300">Titre 2</RouterLink>
-      <RouterLink to="/about" class="hover:text-gray-300">Titre 3</RouterLink>
-      <RouterLink to="/about" class="hover:text-gray-300">Titre 4</RouterLink>
+      <RouterLink to="/" class="hover:text-gray-300">{{ t('menu.title1') }}</RouterLink>
+      <RouterLink to="/about" class="hover:text-gray-300">{{ t('menu.title2') }}</RouterLink>
+      <RouterLink to="/about" class="hover:text-gray-300">{{ t('menu.title3') }}</RouterLink>
+      <RouterLink to="/about" class="hover:text-gray-300">{{ t('menu.title4') }}</RouterLink>
     </div>
 
     <div class="flex items-center space-x-4">
+      <div class="language-selector flex items-center space-x-2 mr-4">
+        <button
+          @click="switchLanguage('en')"
+          class="px-2 py-1 rounded-md hover:bg-orange-600 transition-colors"
+          :class="{ 'bg-orange-500': locale === 'en' }"
+        >
+          EN
+        </button>
+        <button
+          @click="switchLanguage('fr')"
+          class="px-2 py-1 rounded-md hover:bg-orange-600 transition-colors"
+          :class="{ 'bg-orange-500': locale === 'fr' }"
+        >
+          FR
+        </button>
+      </div>
       <img src="@/assets/icons/Mountains.svg" alt="Icon" class="w-6 h-6" />
       <img src="@/assets/icons/Fishing.svg" alt="Settings" class="w-6 h-6" />
       <img src="@/assets/icons/Crosshair.svg" alt="External Link" class="w-6 h-6" />
