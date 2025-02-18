@@ -193,25 +193,32 @@ const handleActivityClick = (activity: Activity) => {
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
-  transition: transform 0.5s ease;
-}
-
-.map-wrapper.is-zoomed {
-  transform: scale(1.1);
+  width: 100%;
+  height: 100%;
 }
 
 .map-image {
   width: 100%;
   height: auto;
   display: block;
+  transition: transform 0.5s ease;
+}
+
+.map-wrapper.is-zoomed .map-image {
+  transform: scale(1.2);
+  transition: transform 0.5s ease;
 }
 
 .map-marker {
   position: absolute;
   transform: translate(-50%, -100%);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.map-wrapper.is-zoomed .map-marker {
+  transform: translate(-50%, -100%) scale(1.2);
 }
 
 .map-marker::after {
@@ -263,6 +270,12 @@ const handleActivityClick = (activity: Activity) => {
   padding: 1rem;
   border-radius: 0.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+  transform-origin: bottom left;
+}
+
+.map-wrapper.is-zoomed .marker-details {
+  transform: scale(1.2);
 }
 
 .marker-details h3 {
