@@ -102,12 +102,12 @@ const handleActivityClick = (activity: Activity) => {
 
         <div v-if="selectedMarker" class="marker-details">
           <h3>{{ selectedMarker.name }}</h3>
-          <ul>
+          <!-- <ul>
             <li v-for="(act, index) in selectedMarker.activities" :key="index">
               {{ act }}
             </li>
-          </ul>
-          <button class="reset-btn" @click="resetInteraction">Retour</button>
+          </ul> -->
+          <button class="reset-btn" @click="resetInteraction">Back</button>
         </div>
       </div>
     </div>

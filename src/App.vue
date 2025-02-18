@@ -36,10 +36,10 @@ translationStore.fetchTranslations(locale.value)
     <!-- Desktop Menu -->
     <div class="hidden md:flex items-center space-x-8">
       <RouterLink to="/" class="hover:text-gray-300">{{ t('menu.title1') }}</RouterLink>
-      <RouterLink to="/about" class="hover:text-gray-300">{{ t('menu.title2') }}</RouterLink>
-      <RouterLink to="/about" class="hover:text-gray-300">{{ t('menu.title3') }}</RouterLink>
-      <RouterLink to="/about" class="hover:text-gray-300">{{ t('menu.title4') }}</RouterLink>
-      <RouterLink to="/about" class="hover:text-gray-300">{{ t('menu.title5') }}</RouterLink>
+      <RouterLink to="/test1" class="hover:text-gray-300">{{ t('menu.title2') }}</RouterLink>
+      <RouterLink to="/test2" class="hover:text-gray-300">{{ t('menu.title3') }}</RouterLink>
+      <RouterLink to="/test3" class="hover:text-gray-300">{{ t('menu.title4') }}</RouterLink>
+      <RouterLink to="/test4" class="hover:text-gray-300">{{ t('menu.title5') }}</RouterLink>
     </div>
 
     <!-- Desktop Actions -->
