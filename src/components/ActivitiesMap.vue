@@ -76,12 +76,11 @@ const handleActivityClick = (activity: Activity) => {
     </div>
 
     <div class="map-container">
-      <div class="map-label">
-        <!-- <img src="@/assets/icons/Location.svg" alt="Location" class="location-icon" /> -->
-        <span>Emplacement</span>
-      </div>
-
       <div class="map-wrapper" :class="{ 'is-zoomed': isZoomed }">
+        <div class="map-label">
+          <img src="@/assets/sample-logo.png" alt="Location" class="location-icon" />
+          <span>Emplacement</span>
+        </div>
         <img src="@/assets/map.png" alt="Map" class="map-image" />
         <div
           v-for="activity in activities"
@@ -110,8 +109,8 @@ const handleActivityClick = (activity: Activity) => {
 
 <style scoped>
 .map-section {
-  padding: 2rem;
-  background-color: #fff5f5;
+  padding: 3rem;
+  /* background-color: #fff5f5; */
 }
 
 .title {
@@ -156,17 +155,33 @@ const handleActivityClick = (activity: Activity) => {
 .map-container {
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
 }
 
 .map-label {
+  position: absolute;
+  top: 16px;
+  left: 16px;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 4px;
   margin-bottom: 1rem;
   padding: 0.5rem;
   background-color: #e8f5e9;
   border-radius: 0.5rem;
   width: fit-content;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0px 2px 10px 0px rgba(51, 51, 51, 0.1);
+  backdrop-filter: blur(7.5px);
+  color: var(--3, #562c2c);
+  text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 100% */
+  z-index: 2;
 }
 
 .location-icon {
@@ -182,7 +197,7 @@ const handleActivityClick = (activity: Activity) => {
 }
 
 .map-wrapper.is-zoomed {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .map-image {

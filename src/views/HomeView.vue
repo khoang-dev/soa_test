@@ -248,13 +248,14 @@ import CalendarCustom from '@/components/CalendarCustom.vue'
 }
 
 .map-container {
-  background: white;
+  /* background: white;
   padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 90%;
+  border-radius: 12px; */
+  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
+  background-color: #fff5f5;
+  /* width: 90%;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto; */
 }
 
 .activity-container {
