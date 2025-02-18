@@ -11,14 +11,24 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "generate-api": "openapi --input ./src/core/api/swagger.json --output ./src/core/api --client axios"
   },
   "dependencies": {
+    "@commitlint/config-conventional": "^19.7.1",
+    "axios": "^1.7.9",
+    "commitlint": "^19.7.1",
+    "dayjs": "^1.11.13",
+    "devmoji": "^2.3.0",
+    "lint-staged": "^15.4.3",
     "pinia": "^2.3.1",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "vue-i18n": "^11.1.1",
+    "vue-router": "^4.5.0",
+    "yorkie": "^2.0.0"
   },
   "devDependencies": {
+    "dotenv": "^16.4.7",
     "@tsconfig/node22": "^22.0.0",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^22.13.1",
@@ -39,5 +49,38 @@
     "vite-plugin-vue-devtools": "^7.7.1",
     "vitest": "^3.0.5",
     "vue-tsc": "^2.2.0"
+  },
+  "gitHooks": {
+    "prepare-commit-msg": "devmoji -e",
+    "pre-commit": "lint-staged",
+    "commit-msg": "commitlint -e $GIT_PARAMS",
+    "pre-push": "yarn build"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,vue}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{css,scss,less,styl,html}": [
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "devmoji": {
+    "types": {
+      "feat": "✨",
+      "fix": "🐛",
+      "docs": "📝",
+      "style": "💄",
+      "refactor": "♻️",
+      "perf": "⚡️",
+      "test": "✅",
+      "chore": "🔧",
+      "build": "📦",
+      "ci": "👷",
+      "revert": "⏪"
+    }
   }
 }
