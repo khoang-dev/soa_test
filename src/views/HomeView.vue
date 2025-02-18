@@ -4,132 +4,257 @@ import CalendarCustom from '@/components/CalendarCustom.vue'
 </script>
 
 <template>
-  <main>
-    <div class="relative h-screen">
-      <img
-        src="@/assets/hero-image.png"
-        alt="Logo"
-        style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 73%, rgba(0, 0, 0, 0.3) 85.5%)"
-      />
-      <!-- <div class="icon-container">
-        <img src="@/assets/icons/Mountains.svg" alt="Mountains" class="icon" />
-        <img src="@/assets/icons/Fishing.svg" alt="Fishing" class="icon" />
-        <img src="@/assets/icons/Crosshair.svg" alt="Crosshair" class="icon" />
+  <div class="hero-section">
+    <div class="hero-image-container">
+      <img src="@/assets/hero-image.png" alt="Hero" class="hero-image" />
+      <div class="gradient-overlay"></div>
+    </div>
+
+    <div class="icons-section">
+      <div class="icons-wrapper">
+        <div class="icon-item">
+          <img src="@/assets/icons/Mountains.svg" alt="Mountains" class="icon" />
+        </div>
+        <div class="icon-item">
+          <img src="@/assets/icons/Fishing.svg" alt="Fishing" class="icon" />
+        </div>
+        <div class="icon-item">
+          <img src="@/assets/icons/Crosshair.svg" alt="Crosshair" class="icon" />
+        </div>
       </div>
-      <button
-        class="absolute z-10 w-20 h-20 rounded-full bg-orange-500 flex justify-center items-center chat-button"
-      >
-        <img src="@/assets/icons/Chats.svg" alt="Chats" class="icon" />
-      </button> -->
     </div>
-    <div class="map-container">
-      <ActivitiesMap />
-    </div>
-    <div class="activity-container">
-      <h2 class="activity-title">NOS ACTIVITÉS</h2>
-      <CalendarCustom />
 
-      <form class="activity-form">
-        <div class="form-row">
-          <div class="form-group">
-            <label>Nom:</label>
-            <input type="text" placeholder="Entrez votre nom" class="form-input" />
-          </div>
+    <button class="chat-button">
+      <img src="@/assets/icons/Chats.svg" alt="Chats" class="icon" />
+    </button>
+  </div>
+  <div class="map-container">
+    <ActivitiesMap />
+  </div>
+  <div class="activity-container">
+    <h2 class="activity-title">NOS ACTIVITÉS</h2>
+    <CalendarCustom />
 
-          <div class="form-group">
-            <label>Email:</label>
-            <input type="email" placeholder="Entrez votre e-mail" class="form-input" />
-          </div>
+    <form class="activity-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nom:</label>
+          <input type="text" placeholder="Entrez votre nom" class="form-input" />
         </div>
 
         <div class="form-group">
-          <label>Message:</label>
-          <div class="rich-text-editor">
-            <div class="editor-toolbar">
-              <div class="toolbar-left">
-                <select class="font-size">
-                  <option>18</option>
-                </select>
-                <div class="divider"></div>
-                <button type="button" class="toolbar-btn"><i class="fas fa-bold"></i></button>
-                <button type="button" class="toolbar-btn"><i class="fas fa-italic"></i></button>
-                <button type="button" class="toolbar-btn"><i class="fas fa-underline"></i></button>
-                <button type="button" class="toolbar-btn">
-                  <i class="fas fa-strikethrough"></i>
-                </button>
-                <div class="divider"></div>
-                <button type="button" class="toolbar-btn"><i class="fas fa-align-left"></i></button>
-                <button type="button" class="toolbar-btn">
-                  <i class="fas fa-align-center"></i>
-                </button>
-                <button type="button" class="toolbar-btn">
-                  <i class="fas fa-align-right"></i>
-                </button>
-                <div class="divider"></div>
-                <button type="button" class="toolbar-btn"><i class="fas fa-list-ul"></i></button>
-                <button type="button" class="toolbar-btn"><i class="fas fa-list-ol"></i></button>
-              </div>
-              <div class="toolbar-right">
-                <button type="button" class="toolbar-btn"><i class="fas fa-link"></i></button>
-                <button type="button" class="toolbar-btn"><i class="fas fa-image"></i></button>
-              </div>
+          <label>Email:</label>
+          <input type="email" placeholder="Entrez votre e-mail" class="form-input" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Message:</label>
+        <div class="rich-text-editor">
+          <div class="editor-toolbar">
+            <div class="toolbar-left">
+              <select class="font-size">
+                <option>18</option>
+              </select>
+              <div class="divider"></div>
+              <button type="button" class="toolbar-btn"><i class="fas fa-bold"></i></button>
+              <button type="button" class="toolbar-btn"><i class="fas fa-italic"></i></button>
+              <button type="button" class="toolbar-btn"><i class="fas fa-underline"></i></button>
+              <button type="button" class="toolbar-btn">
+                <i class="fas fa-strikethrough"></i>
+              </button>
+              <div class="divider"></div>
+              <button type="button" class="toolbar-btn"><i class="fas fa-align-left"></i></button>
+              <button type="button" class="toolbar-btn">
+                <i class="fas fa-align-center"></i>
+              </button>
+              <button type="button" class="toolbar-btn">
+                <i class="fas fa-align-right"></i>
+              </button>
+              <div class="divider"></div>
+              <button type="button" class="toolbar-btn"><i class="fas fa-list-ul"></i></button>
+              <button type="button" class="toolbar-btn"><i class="fas fa-list-ol"></i></button>
             </div>
-            <div class="editor-content" contenteditable="true">
-              <h6>Heading 6</h6>
-              <p>
-                Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                unknown printer took a galley of type and scrambled it to
-              </p>
+            <div class="toolbar-right">
+              <button type="button" class="toolbar-btn"><i class="fas fa-link"></i></button>
+              <button type="button" class="toolbar-btn"><i class="fas fa-image"></i></button>
             </div>
           </div>
-        </div>
-
-        <div class="form-group">
-          <label>Fichier:</label>
-          <div class="file-upload">
-            <div class="file-upload-content">
-              <span class="file-icon">📎</span>
-              <span class="file-text">Pièce jointe</span>
-              <span class="file-type">(*fichiers pdf uniquement)</span>
-            </div>
-            <input type="file" accept=".pdf" class="file-input" />
+          <div class="editor-content" contenteditable="true">
+            <h6>Heading 6</h6>
+            <p>
+              Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+              has been the industry's standard dummy text ever since the 1500s, when an unknown
+              printer took a galley of type and scrambled it to
+            </p>
           </div>
         </div>
+      </div>
 
-        <div class="form-actions">
-          <button type="button" class="clear-btn">Clear All</button>
-          <button type="submit" class="submit-button">
-            Envoyer
-            <i class="fas fa-arrow-right"></i>
-          </button>
+      <div class="form-group">
+        <label>Fichier:</label>
+        <div class="file-upload">
+          <div class="file-upload-content">
+            <span class="file-icon">📎</span>
+            <span class="file-text">Pièce jointe</span>
+            <span class="file-type">(*fichiers pdf uniquement)</span>
+          </div>
+          <input type="file" accept=".pdf" class="file-input" />
         </div>
-      </form>
-    </div>
-  </main>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="clear-btn">Clear All</button>
+        <button type="submit" class="submit-button">
+          Envoyer
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </form>
+  </div>
 </template>
 
 <style scoped>
-.icon-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-  position: absolute;
-  gap: 160px;
-  top: 920px;
-  z-index: 1000;
+.hero-section {
+  position: relative;
   width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.chat-button {
-  bottom: 80px;
-  right: 148px;
+.hero-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gradient-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+.icons-section {
+  position: absolute;
+  bottom: 120px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+}
+
+.icons-wrapper {
+  display: flex;
+  gap: 160px;
+  padding: 0 20px;
+}
+
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 
 .icon {
-  width: 40px; /* Điều chỉnh kích thước biểu tượng */
-  height: 40px; /* Điều chỉnh kích thước biểu tượng */
-  margin: 0 10px; /* Khoảng cách giữa các biểu tượng */
+  width: 48px;
+  height: 48px;
+  transition: transform 0.3s ease;
+}
+
+.icon-item:hover .icon {
+  transform: scale(1.1);
+}
+
+.icon-label {
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.chat-button {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #ff5722;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+  z-index: 20;
+}
+
+.chat-button:hover {
+  transform: scale(1.05);
+  background-color: #f4511e;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .icons-wrapper {
+    gap: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .icons-wrapper {
+    gap: 60px;
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .chat-button {
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .icons-wrapper {
+    gap: 40px;
+  }
+
+  .icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .icon-label {
+    font-size: 12px;
+  }
+}
+
+.map-container {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .activity-container {
