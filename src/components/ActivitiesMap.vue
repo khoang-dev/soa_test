@@ -60,7 +60,11 @@ const handleActivityClick = (activity: Activity) => {
 
 <template>
   <div class="map-section">
-    <h2 class="title">TITRE BLOC 2</h2>
+    <div class="flex items-center justify-center gap-4 mb-4">
+      <hr class="line w-1/4 text-[#BBBBBB]" />
+      <h2 class="title">TITRE BLOC 2</h2>
+      <hr class="line w-1/4 text-[#BBBBBB]" />
+    </div>
 
     <div class="activities-nav">
       <button
@@ -118,7 +122,7 @@ const handleActivityClick = (activity: Activity) => {
   color: #ff5722;
   font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
 }
 
 .activities-nav {
