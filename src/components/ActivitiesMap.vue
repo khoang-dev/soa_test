@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import MountainsIcon from '@/assets/icons/Mountains.svg'
 import FishingIcon from '@/assets/icons/Fishing.svg'
 import CrosshairIcon from '@/assets/icons/Crosshair.svg'
+import { useI18n } from 'vue-i18n'
 
 interface Activity {
   id: number
@@ -15,32 +16,34 @@ interface Activity {
   activities: string[]
 }
 
+const { t } = useI18n()
+
 const selectedMarker = ref<Activity | null>(null)
 const isZoomed = ref(false)
 
-const activities: Activity[] = [
+const activities = computed(() => [
   {
     id: 1,
-    name: 'Pourvoirie 1',
+    name: t('map.case1'),
     icon: MountainsIcon,
     position: { top: '30%', left: '40%' },
     activities: ['Randonnée', 'Camping', 'Observation'],
   },
   {
     id: 2,
-    name: 'Pourvoirie 2',
+    name: t('map.case2'),
     icon: FishingIcon,
     position: { top: '45%', left: '55%' },
     activities: ['Pêche', 'Kayak', 'Natation'],
   },
   {
     id: 3,
-    name: 'Pourvoirie 3',
+    name: t('map.case3'),
     icon: CrosshairIcon,
     position: { top: '35%', left: '48%' },
     activities: ['Chasse', "Tir à l'arc", 'Safari'],
   },
-]
+])
 
 const handleMarkerClick = (activity: Activity) => {
   selectedMarker.value = activity
@@ -62,7 +65,7 @@ const handleActivityClick = (activity: Activity) => {
   <div class="map-section">
     <div class="flex items-center justify-center gap-4 mb-4">
       <hr class="line w-1/4 text-[#BBBBBB]" />
-      <h2 class="title">TITRE BLOC 2</h2>
+      <h2 class="title">{{ t('map.title') }}</h2>
       <hr class="line w-1/4 text-[#BBBBBB]" />
     </div>
 

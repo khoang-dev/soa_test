@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { OpenAPI } from '@/core/api'
+import { useTranslationStore } from '@/stores/translation'
 
-OpenAPI.BASE = import.meta.env.VUE_APP_API_URL
+OpenAPI.BASE = import.meta.env.VITE_API_BASE_URL
 
 const { t, locale } = useI18n()
 const isMobileMenuOpen = ref(false)
+const translationStore = useTranslationStore()
 
 const switchLanguage = (lang: string) => {
   locale.value = lang
@@ -16,6 +18,13 @@ const switchLanguage = (lang: string) => {
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value
 }
+
+watch(locale, async (newLocale) => {
+  await translationStore.fetchTranslations(newLocale)
+})
+
+// Load translations lần đầu
+translationStore.fetchTranslations(locale.value)
 </script>
 
 <template>
@@ -30,6 +39,7 @@ const toggleMobileMenu = () => {
       <RouterLink to="/about" class="hover:text-gray-300">{{ t('menu.title2') }}</RouterLink>
       <RouterLink to="/about" class="hover:text-gray-300">{{ t('menu.title3') }}</RouterLink>
       <RouterLink to="/about" class="hover:text-gray-300">{{ t('menu.title4') }}</RouterLink>
+      <RouterLink to="/about" class="hover:text-gray-300">{{ t('menu.title5') }}</RouterLink>
     </div>
 
     <!-- Desktop Actions -->
@@ -122,7 +132,7 @@ const toggleMobileMenu = () => {
 
           <nav class="flex flex-col space-y-1">
             <RouterLink
-              v-for="(item, index) in ['title1', 'title2', 'title3', 'title4']"
+              v-for="(item, index) in ['title1', 'title2', 'title3', 'title4', 'title5']"
               :key="index"
               :to="index === 0 ? '/' : '/about'"
               class="text-white/90 hover:text-white hover:bg-white/10 px-4 py-3 rounded-lg transition-all duration-200"

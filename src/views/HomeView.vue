@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import ActivitiesMap from '@/components/ActivitiesMap.vue'
 import CalendarCustom from '@/components/CalendarCustom.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 </script>
 
 <template>
@@ -34,7 +37,7 @@ import CalendarCustom from '@/components/CalendarCustom.vue'
   <div class="activity-container">
     <div class="flex items-center justify-center gap-4 mb-4">
       <hr class="line w-1/4 text-[#BBBBBB]" />
-      <h2 class="activity-title">NOS ACTIVITÉS</h2>
+      <h2 class="activity-title">{{ t('booking.title') }}</h2>
       <hr class="line w-1/4 text-[#BBBBBB]" />
     </div>
     <CalendarCustom />
