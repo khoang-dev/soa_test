@@ -47,14 +47,14 @@ translationStore.fetchTranslations(locale.value)
       <div class="language-selector flex items-center space-x-2 mr-4">
         <button
           @click="switchLanguage('en')"
-          class="px-2 py-1 rounded-md hover:bg-orange-600 transition-colors"
+          class="px-2 py-1 rounded-md hover:bg-orange-600 transition-colors cursor-pointer"
           :class="{ 'bg-orange-500': locale === 'en' }"
         >
           EN
         </button>
         <button
           @click="switchLanguage('fr')"
-          class="px-2 py-1 rounded-md hover:bg-orange-600 transition-colors"
+          class="px-2 py-1 rounded-md hover:bg-orange-600 transition-colors cursor-pointer"
           :class="{ 'bg-orange-500': locale === 'fr' }"
         >
           FR
