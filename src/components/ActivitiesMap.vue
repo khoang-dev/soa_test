@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import MountainsIcon from '@/assets/icons/Mountains.svg'
-import FishingIcon from '@/assets/icons/Fishing.svg'
-import CrosshairIcon from '@/assets/icons/Crosshair.svg'
+import MountainsIcon from '@/assets/icons/MountainsVector.svg'
+import FishingIcon from '@/assets/icons/FishingVector.svg'
+import CrosshairIcon from '@/assets/icons/CrosshairVector.svg'
 import { useI18n } from 'vue-i18n'
 
 interface Activity {
@@ -26,21 +26,21 @@ const activities = computed(() => [
     id: 1,
     name: t('map.case1'),
     icon: MountainsIcon,
-    position: { top: '30%', left: '40%' },
+    position: { top: '38%', left: '33%' },
     activities: ['Randonnée', 'Camping', 'Observation'],
   },
   {
     id: 2,
     name: t('map.case2'),
     icon: FishingIcon,
-    position: { top: '45%', left: '55%' },
+    position: { top: '46%', left: '50%' },
     activities: ['Pêche', 'Kayak', 'Natation'],
   },
   {
     id: 3,
     name: t('map.case3'),
     icon: CrosshairIcon,
-    position: { top: '35%', left: '48%' },
+    position: { top: '56%', left: '32%' },
     activities: ['Chasse', "Tir à l'arc", 'Safari'],
   },
 ])
@@ -77,8 +77,10 @@ const handleActivityClick = (activity: Activity) => {
         :class="{ active: selectedMarker?.id === activity.id }"
         @click="handleActivityClick(activity)"
       >
-        <img :src="activity.icon" :alt="activity.name" class="activity-icon" />
-        {{ activity.name }}
+        <div class="icon-wrapper">
+          <img :src="activity.icon" :alt="activity.name" class="activity-icon" />
+        </div>
+        <span class="activity-name">{{ activity.name }}</span>
       </button>
     </div>
 
@@ -97,7 +99,9 @@ const handleActivityClick = (activity: Activity) => {
           :style="{ top: activity.position.top, left: activity.position.left }"
           @click="handleMarkerClick(activity)"
         >
-          <img :src="activity.icon" :alt="activity.name" />
+          <div class="bg-white w-full h-full flex justify-center items-center rounded-full">
+            <img :src="activity.icon" :alt="activity.name" class="marker-icon" />
+          </div>
         </div>
 
         <div v-if="selectedMarker" class="marker-details">
@@ -218,55 +222,56 @@ const handleActivityClick = (activity: Activity) => {
 
 .map-marker {
   position: absolute;
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, -50%);
   cursor: pointer;
-  transition: all 0.5s ease;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  transition: all 0.3s ease;
+  background: white;
+  border-radius: 50%;
+  padding: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border: 2px solid #f2542d;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f2542d;
 }
 
-.map-wrapper.is-zoomed .map-marker {
-  transform: translate(-50%, -100%) scale(1.2);
+.map-marker img {
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s ease;
 }
 
 .map-marker::after {
   content: '';
   position: absolute;
-  bottom: -8px;
+  bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 0;
-  height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-top: 10px solid #fff;
+  border-top: 10px solid white;
   z-index: -1;
-}
-
-.map-marker img {
-  width: 32px;
-  height: 32px;
-  padding: 6px;
-  background: white;
-  border-radius: 50%;
-  border: 2px solid #ff5722;
+  border-top-color: #f2542d;
 }
 
 .map-marker.active {
-  transform: translate(-50%, -100%) scale(1.2);
-  z-index: 2;
+  transform: translate(-50%, -50%) scale(1.2);
+  z-index: 10;
 }
 
 .map-marker.active img {
-  background: #ff5722;
   filter: brightness(0) invert(1);
 }
 
-.map-marker.active::after {
+/* .map-marker.active::after {
   border-top-color: #ff5722;
-}
+} */
 
 .map-marker:hover {
-  transform: translate(-50%, -100%) scale(1.1);
+  transform: translate(-50%, -50%) scale(1.1);
 }
 
 .marker-details {
