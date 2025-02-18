@@ -208,26 +208,51 @@ const handleActivityClick = (activity: Activity) => {
 
 .map-marker {
   position: absolute;
-  transform: translate(-50%, -50%);
-  width: 40px;
-  height: 40px;
-  background-color: white;
-  border-radius: 50%;
-  padding: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translate(-50%, -100%);
   cursor: pointer;
   transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
-.map-marker.active {
-  background-color: #ff5722;
-  transform: translate(-50%, -50%) scale(1.2);
+.map-marker::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid #fff;
+  z-index: -1;
 }
 
 .map-marker img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+  background: white;
+  border-radius: 50%;
+  border: 2px solid #ff5722;
+}
+
+.map-marker.active {
+  transform: translate(-50%, -100%) scale(1.2);
+  z-index: 2;
+}
+
+.map-marker.active img {
+  background: #ff5722;
+  filter: brightness(0) invert(1);
+}
+
+.map-marker.active::after {
+  border-top-color: #ff5722;
+}
+
+.map-marker:hover {
+  transform: translate(-50%, -100%) scale(1.1);
 }
 
 .marker-details {
