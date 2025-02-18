@@ -2,6 +2,9 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { ref } from 'vue'
+import { OpenAPI } from '@/core/api'
+
+OpenAPI.BASE = import.meta.env.VUE_APP_API_URL
 
 const { t, locale } = useI18n()
 const isMobileMenuOpen = ref(false)

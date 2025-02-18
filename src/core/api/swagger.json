@@ -1,0 +1,451 @@
+{
+  "schemes": ["http", "https"],
+  "swagger": "2.0",
+  "info": {
+    "description": "Including APIs for Mitik.",
+    "title": "Mitik APIs",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {},
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0"
+  },
+  "host": "",
+  "basePath": "/api/v1",
+  "paths": {
+    "/pages": {
+      "get": {
+        "description": "Get all pages for a specific language",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["pages"],
+        "summary": "Get all pages",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "fr",
+            "description": "Language code (en/fr)",
+            "name": "lang",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/dtos.PageResponse"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/pages/lists": {
+      "get": {
+        "description": "Get all pages with their translations",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["pages"],
+        "summary": "Get all lists",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/dtos.MultiLangPageResponse"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/pages/{id}": {
+      "get": {
+        "description": "Get a specific page by its ID",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["pages"],
+        "summary": "Get a page by ID",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Page ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dtos.PageResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "dtos.AddressDTO": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        }
+      }
+    },
+    "dtos.Bloc1CaseDTO": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "cta": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "tagline": {
+          "type": "string"
+        }
+      }
+    },
+    "dtos.Bloc1DTO": {
+      "type": "object",
+      "properties": {
+        "cases": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtos.Bloc1CaseDTO"
+          }
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "dtos.Bloc2DTO": {
+      "type": "object",
+      "properties": {
+        "cases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "dtos.Bloc3CaseDTO": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "tagline": {
+          "type": "string"
+        }
+      }
+    },
+    "dtos.Bloc3DTO": {
+      "type": "object",
+      "properties": {
+        "cases": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtos.Bloc3CaseDTO"
+          }
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "dtos.Bloc4DTO": {
+      "type": "object",
+      "properties": {
+        "pictos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtos.PictoDTO"
+          }
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "text_title": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "dtos.Bloc5DTO": {
+      "type": "object",
+      "properties": {
+        "footer": {
+          "type": "string"
+        },
+        "reviews": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtos.ReviewDTO"
+          }
+        },
+        "text": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "dtos.Bloc6DTO": {
+      "type": "object",
+      "properties": {
+        "button": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "dtos.CartePointDTO": {
+      "type": "object",
+      "properties": {
+        "activities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "address": {
+          "type": "string"
+        },
+        "coordinates": {
+          "$ref": "#/definitions/dtos.CoordinatesDTO"
+        },
+        "email": {
+          "type": "string"
+        },
+        "fax": {
+          "type": "string"
+        },
+        "free_call": {
+          "type": "string"
+        },
+        "marker_information": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "description": "Can be string or []string"
+        },
+        "website": {
+          "type": "string"
+        }
+      }
+    },
+    "dtos.CoordinatesDTO": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "string"
+        }
+      }
+    },
+    "dtos.FooterDTO": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/dtos.AddressDTO"
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtos.FooterLinkDTO"
+          }
+        }
+      }
+    },
+    "dtos.FooterLinkDTO": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "dtos.MultiLangPageResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "translations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtos.PageResponse"
+          }
+        }
+      }
+    },
+    "dtos.PageResponse": {
+      "type": "object",
+      "properties": {
+        "banner_menu": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "banner_title": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "bloc_1": {
+          "$ref": "#/definitions/dtos.Bloc1DTO"
+        },
+        "bloc_2": {
+          "$ref": "#/definitions/dtos.Bloc2DTO"
+        },
+        "bloc_3": {
+          "$ref": "#/definitions/dtos.Bloc3DTO"
+        },
+        "bloc_4": {
+          "$ref": "#/definitions/dtos.Bloc4DTO"
+        },
+        "bloc_5": {
+          "$ref": "#/definitions/dtos.Bloc5DTO"
+        },
+        "bloc_6": {
+          "$ref": "#/definitions/dtos.Bloc6DTO"
+        },
+        "carte_point": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/dtos.CartePointDTO"
+          }
+        },
+        "footer": {
+          "$ref": "#/definitions/dtos.FooterDTO"
+        },
+        "head_menu": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        }
+      }
+    },
+    "dtos.PictoDTO": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "dtos.ReviewDTO": {
+      "type": "object",
+      "properties": {
+        "author": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "review": {
+          "type": "string"
+        }
+      }
+    },
+    "response.ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string",
+          "example": "error message"
+        }
+      }
+    }
+  }
+}
